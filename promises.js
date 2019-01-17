@@ -87,12 +87,24 @@ const fakeAPICall = (i) => {
   });
 };
 
-function getAllData(n) {
-  // CODE GOES HERE
-  for(let i = 0; i < n; i++) {
-    fakeAPICall(i).then(data => console.log(data))
-  }
+// function getAllData(n) {
+//   // CODE GOES HERE
+//   for(let i = 0; i < n; i++) {
+//     fakeAPICall(i).then(data => console.log(data))
+//   }
 
+// }
+
+// getAllData(3);
+
+function getAllData() {
+  // CODE GOES HERE
+//   for(let i = 0; i < n; i++) {
+//      fakeAPICall(i).then(data => console.log(data))
+//   }
+ 
+  Promise.all([fakeAPICall(0),fakeAPICall(1),fakeAPICall(2)])
+  .then(response => console.log(response))
 }
 
-getAllData(3);
+getAllData();
