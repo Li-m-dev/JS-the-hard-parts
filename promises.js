@@ -1,9 +1,9 @@
 // Challenge 1
 
 function sayHello() {
-	console.log('Hello')
+	console.log('1. Hello')
 }
-setTimeout(sayHello, 1000)
+// setTimeout(sayHello, 1000)
 
 // Uncomment the line below when ready
 // sayHello(); // should log "Hello" after 1000ms
@@ -12,52 +12,62 @@ setTimeout(sayHello, 1000)
 // Challenge 2
 var promise = new Promise(function (resolve, reject) {
   // ADD CODE HERE
-  
+setTimeout(() => resolve("Resolved"), 1000)
 })
 
 
 
 // Should print out "Resolved!"
 // ADD CODE HERE
-setTimeout(() => {return 'Resolved!'}, 1000) 
-.then(console.log(promise));
+promise.then(data => console.log(data))
 // Challenge 3
 
 promise = new Promise(function(resolve, reject) {
   // ADD CODE HERE
+  setTimeout(() => reject("Rejected!"), 1000)
 })
 
 // Should print out "Reject!"
 // ADD CODE HERE
-
+promise.catch(data => console.log(data))
 
 // Challenge 4
 
 promise = new Promise(function (resolve, reject) {
   // ADD CODE HERE
+  resolve("Promise has been resolved")
 });
 
 // Uncomment the lines below when ready
-// promise.then(() => console.log('Promise has been resolved!));
-// console.log("I'm not the promise!");
+promise.then((data) => console.log(data));
+console.log("I'm not the promise!");
 
 
 // Challenge 5
 function delay(){
-
+	return new Promise(function (resolve, reject) {
+    setTimeout(() => resolve(), 1000)
+})
+  
+  
 }
 
 // Uncomment the code below to test
 // This code should log "Hello" after 1000ms
-// delay().then(sayHello);
+delay().then(sayHello);
 
 
 // Challenge 6
 //
 // ADD CODE BELOW
-// var secondPromise =
-// var firstPromise =
+var secondPromise = new Promise(function (resolve, reject) {
+  		resolve("Second")
+})
+var firstPromise = new Promise(function (resolve, reject) {
+resolve(secondPromise)
+})
 
+firstPromise.then(data => console.log(data))
 
 // Challenge 7
 const fakePeople = [
@@ -77,6 +87,12 @@ const fakeAPICall = (i) => {
   });
 };
 
-function getAllData() {
+function getAllData(n) {
   // CODE GOES HERE
+  for(let i = 0; i < n; i++) {
+    fakeAPICall(i).then(data => console.log(data))
+  }
+
 }
+
+getAllData(3);
