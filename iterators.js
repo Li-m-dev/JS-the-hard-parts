@@ -96,7 +96,7 @@ function setIterator(set) {
 //   console.log(set.values)
 //   console.log(it.next())
   function inner() {
-    console.log(it.next())
+//     console.log(it.next())
     return it.next().value
   }
   return {next: inner}
@@ -152,23 +152,43 @@ Words.prototype[Symbol.iterator] = function() {
 // CHALLENGE 7
 
 function valueAndPrevIndex(array){
-
+    let i = 0;
+    function inner () {
+       i++;
+      if(i === 1) {
+        return `${array[i-1]} is the first`;
+      }
+     
+      if(i > 1){
+        return `${array[i-1]} was found after index ${i-2}`
+      }
+    }
+ 
+  return{sentence: inner};
 }
 
 const returnedSentence = valueAndPrevIndex([4,5,6])
-// console.log(returnedSentence.sentence());
-// console.log(returnedSentence.sentence());
-// console.log(returnedSentence.sentence());
+console.log(returnedSentence.sentence());
+console.log(returnedSentence.sentence());
+console.log(returnedSentence.sentence());
 
 
 //CHALLENGE 8
 
 function* createConversation(string) {
+yield setInterval(()=> {
+	if(string === 'english') {
+	console.log("hello there")
+}else{
+	console.log("gibberish")
+}
+},3000)
 
 
 }
 
-// console.log(createConversation('english').next());
+ console.log(createConversation('english').next());
+// console.log(createConversation('jenglish').next());
 
 
 
